@@ -1,0 +1,105 @@
+body {
+  background: #111;
+  color: #fff;
+  font-family: "RocknRoll One", sans-serif;
+}
+
+#gauge-container {
+  position: relative;
+  height: 600px;
+  width: 100px;
+  margin: 50px auto;
+  background: transparent;
+}
+
+/* 疑似要素で左端にグラデのバーを追加 */
+#gauge-container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      #f0f 0%,
+      /* XP3000 ピンク・紫 */
+      #39ff14 50%,
+      /* XP1500 ネオグリーン */
+      #0af 100%
+      /* XP500 青 */
+    );
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.viewer {
+  position: absolute;
+  left: 10px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+  transform: translateY(-10px);
+}
+
+.viewer.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.viewer-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+.viewer img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.xp-value {
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 50px;
+  text-align: right;
+}
+
+.xp-text {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.xp {
+  margin-left: 6px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(5px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounce {
+  animation: bounce 0.4s ease;
+}
